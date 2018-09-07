@@ -1,0 +1,11 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+          xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  
+  <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+
+  <util:render render="${empty render or render}">
+    <header>This a Header</header>
+  </util:render>
+</jsp:root>

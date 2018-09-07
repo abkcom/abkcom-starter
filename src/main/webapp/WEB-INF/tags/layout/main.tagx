@@ -1,28 +1,32 @@
 <jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
           xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+          xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
           xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
   <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
     
-  <jsp:directive.attribute name="h1" type="java.lang.String" required="false" rtexprvalue="true" description="The page header" />
+  <jsp:directive.attribute name="h1" type="java.lang.String" required="false" rtexprvalue="true" description="The page h1 element" />
+  <jsp:directive.attribute name="includeHeader" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicates if page header is visable. (default: true)" />
+  <jsp:directive.attribute name="includeFooter" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicates if page footer is visable. (default: true)" />
   <jsp:directive.attribute name="style" fragment="true" />
+  
+  <c:set var="includeHeader" value="${empty includeHeader ? true : includeHeader}" />
 
-<html>
-
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <util:loadScripts />
-    <title>
-      <c:out value="${h1}"/>
-    </title>
-    <style type="text/css">
-      <jsp:invoke fragment="style"/>
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1><c:out value="${h1}"/></h1>
-      <jsp:doBody/>
-    </div>        
-  </body>  
-</html>
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title><c:out value="${h1}"/></title>
+      <util:loadScripts />
+      <style type="text/css">
+        <jsp:invoke fragment="style"/>
+      </style>
+    </head>
+    <body>
+      <layout:header render="${includeHeader}"/>
+      <div class="container">
+        <h1><c:out value="${h1}"/></h1>
+        <jsp:doBody/>
+      </div>
+      <layout:footer render="${includeFooter}"/>        
+    </body>  
+  </html>
 </jsp:root>

@@ -10,6 +10,6 @@ public class WelcomeController
   @GetMapping("/welcome")
   public String view()
   {
-    return "welcome";
+    return "/welcome";
   }
 }
