@@ -14,7 +14,7 @@ import com.abkcom.service.user.UserRepo;
 @Repository
 public class UserRepoInMemory implements UserRepo
 {
-  private static AtomicLong idgen = new AtomicLong();
+  private static AtomicLong idgen = new AtomicLong(100000);
   private Map<Long, User> users;
 
   public UserRepoInMemory()

@@ -80,7 +80,7 @@ public class UserCrudController
     {
       return "/user/editUser";
     }
-    userService.updateUser(id, userForm);
+    userService.editUser(id, userForm);
     return "redirect:/users/"+id;
   }
 

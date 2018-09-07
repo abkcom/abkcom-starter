@@ -10,7 +10,7 @@ public interface UserCrudService
 
   UserView addUser(UserCreate data);
 
-  void updateUser(long userId, UserUpdate data);
+  void editUser(long userId, UserUpdate data);
 
   void deleteUser(long userId);
 }

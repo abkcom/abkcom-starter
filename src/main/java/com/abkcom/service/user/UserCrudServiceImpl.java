@@ -44,7 +44,7 @@ public class UserCrudServiceImpl implements UserCrudService
   }
 
   @Override
-  public void updateUser(long userId, UserUpdate userDto)
+  public void editUser(long userId, UserUpdate userDto)
   {
     User user = userRepo.getUser(userId);
     user.setEmail(userDto.getEmail());

@@ -128,7 +128,7 @@ public class UserCrudControllerTest
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk()).andExpect(content().string(""))
         .andDo(print());
-    verify(userServiceMock).updateUser(0L, any(UserUpdate.class));
+    verify(userServiceMock).editUser(0L, any(UserUpdate.class));
   }
 
 }
