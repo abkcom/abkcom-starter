@@ -1,0 +1,46 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:sf="http://www.springframework.org/tags/form"
+  xmlns:spring="http://www.springframework.org/tags" 
+  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+  xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1">
+  <jsp:output omit-xml-declaration="yes" />
+
+  <jsp:directive.attribute name="tagId" type="java.lang.String" required="false" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
+  <jsp:directive.attribute name="modelAttribute" type="java.lang.String" required="false" rtexprvalue="true" description="The name of the model attribute for form binding" />
+  <jsp:directive.attribute name="path" type="java.lang.String" required="false" rtexprvalue="true" description="Specify the relative URL path (wit leading /)" />
+  <jsp:directive.attribute name="multipart" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if this is a multipart form (default: false)" />
+  <jsp:directive.attribute name="method" type="java.lang.String" required="false" rtexprvalue="true" description="Indicate form method (default: POST)" />
+  <jsp:directive.attribute name="errorHeader" type="java.lang.String" required="false" rtexprvalue="true" description="Display error header (default: true)" />
+  <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="roles" type="java.lang.String" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered based one role " />
+
+  <util:render render="${empty render or render}" roles="${roles}">
+    <c:set var="formBean" value="${requestScope[modelAttribute]}" scope="request" />
+    <c:if test="${empty tagId}">
+      <c:set var="tagId">
+        <util:idGenerator value="${modelAttribute}_id"/>
+      </c:set>
+    </c:if>    
+    <c:set var="enctype" value="application/x-www-form-urlencoded" />
+    <c:if test="${multipart}">
+      <c:set var="enctype" value="multipart/form-data" />
+    </c:if>
+    <c:if test="${empty method}">
+      <c:set var="method" value="POST" />
+    </c:if>
+    <c:url var="pathUrl" value="${path}" />
+    <div class="form-container">
+      <sf:form id="${tagId}" action="${pathUrl}" method="${method}" modelAttribute="${modelAttribute}" enctype="${enctype}"
+        cssClass="">
+        <spring:hasBindErrors name="${modelAttribute}">
+          <div class="alert alert-danger">
+            <div class="h3">Oops!</div>
+            There are some errors!
+          </div>
+        </spring:hasBindErrors>
+        <jsp:doBody />
+      </sf:form>
+    </div>
+  </util:render>
+</jsp:root>

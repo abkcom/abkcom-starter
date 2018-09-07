@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+
+  <jsp:directive.attribute name="tagId" type="java.lang.String" required="false" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
+  <jsp:directive.attribute name="prop" type="java.lang.String" required="false" rtexprvalue="true" description="The property (field name) of the dataset to be displayed in a column." />
+  <jsp:directive.attribute name="value" type="java.lang.String" required="false" rtexprvalue="true" description="The static value to be inserted." />
+  <jsp:directive.attribute name="href" type="java.lang.String" required="false" rtexprvalue="true" description="Specify the URL path" />
+  <jsp:directive.attribute name="pathVar" type="java.lang.String" required="false" rtexprvalue="true" description="The path variable property that is added to URL (defaults to 'id')" />
+  <jsp:directive.attribute name="styleClass" type="java.lang.String" required="false" rtexprvalue="true" description="Specify Style Class" />
+  <jsp:directive.attribute name="linkStyleClass" type="java.lang.String" required="false" rtexprvalue="true" description="Specify Style Class" />
+  <jsp:directive.attribute name="th" type="java.lang.String" required="false" rtexprvalue="true" description="The column label to be used in the table (optional)." />
+  <jsp:directive.attribute name="type" type="java.lang.String" required="false" rtexprvalue="true" description="Indicate how column will be displayed in the table. Available types: money, date, number (optional)." />
+  <jsp:directive.attribute name="respHidden" type="java.lang.String" required="false" rtexprvalue="true" description="Indicate if column will be hedden when resized : xs;sm;md;lg (optional)." />
+  <jsp:directive.attribute name="format" type="java.lang.String" required="false" rtexprvalue="true" description="Format pattern to be used to format the value" />
+  <jsp:directive.attribute name="scope" type="java.lang.String" required="false" rtexprvalue="true" description="Scope attribute for column" />
+  <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+
+  <util:render render="${empty render or render}">
+    <c:if test="${empty th}">
+      <c:set var="th" value="&#160;"/>
+    </c:if>
+
+    <c:set var="delim" value="&#9999;" />
+
+    <c:choose>
+      <c:when test="${not empty respHidden and empty columnRespHidden}">
+        <c:set var="columnRespHidden" value="${respHidden}" scope="request" />
+      </c:when>
+      <c:when test="${not empty respHidden and not empty columnRespHidden}">
+        <c:set var="columnRespHidden" value="${columnRespHidden}${delim}${respHidden}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnRespHidden}">
+        <c:set var="columnRespHidden" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnRespHidden" value="${columnRespHidden}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+
+    <c:choose>
+      <c:when test="${not empty type and empty columnTypes}">
+        <c:set var="columnTypes" value="${type}" scope="request" />
+      </c:when>
+      <c:when test="${not empty type and not empty columnTypes}">
+        <c:set var="columnTypes" value="${columnTypes}${delim}${type}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnTypes}">
+        <c:set var="columnTypes" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnTypes" value="${columnTypes}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+
+    <c:choose>
+      <c:when test="${not empty href and empty columnHrefs}">
+        <c:set var="columnHrefs" value="${href}" scope="request" />
+      </c:when>
+      <c:when test="${not empty href and not empty columnHrefs}">
+        <c:set var="columnHrefs" value="${columnHrefs}${delim}${href}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnTypes}">
+        <c:set var="columnHrefs" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnHrefs" value="${columnHrefs}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+
+    <c:choose>
+      <c:when test="${not empty pathVar and empty columnPathVars}">
+        <c:set var="columnPathVars" value="${pathVar}" scope="request" />
+      </c:when>
+      <c:when test="${not empty pathVar and not empty columnPathVars}">
+        <c:set var="columnPathVars" value="${columnPathVars}${delim}${pathVar}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnTypes}">
+        <c:set var="columnPathVars" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnPathVars" value="${columnPathVars}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+
+    <c:choose>
+       <c:when test="${not empty styleClass and empty columnStyleClasses}">
+        <c:set var="columnStyleClasses" value="${styleClass}" scope="request" />
+      </c:when>
+      <c:when test="${not empty styleClass and not empty columnStyleClasses}">
+        <c:set var="columnStyleClasses" value="${columnStyleClasses}${delim}${styleClass}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnStyleClasses}">
+        <c:set var="columnStyleClasses" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnStyleClasses" value="${columnStyleClasses}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+    
+    <c:choose>
+       <c:when test="${not empty linkStyleClass and empty columnLinkStyleClasses}">
+        <c:set var="columnLinkStyleClasses" value="${linkStyleClass}" scope="request" />
+      </c:when>
+      <c:when test="${not empty linkStyleClass and not empty columnLinkStyleClasses}">
+        <c:set var="columnLinkStyleClasses" value="${columnLinkStyleClasses}${delim}${linkStyleClass}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnLinkStyleClasses}">
+        <c:set var="columnLinkStyleClasses" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnLinkStyleClasses" value="${columnLinkStyleClasses}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+    
+    <c:choose>
+       <c:when test="${not empty format and empty columnFormats}">
+        <c:set var="columnFormats" value="${format}" scope="request" />
+      </c:when>
+      <c:when test="${not empty format and not empty columnFormats}">
+        <c:set var="columnFormats" value="${columnFormats}${delim}${format}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnFormats}">
+        <c:set var="columnFormats" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnFormats" value="${columnFormats}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>    
+    
+    <c:choose>
+       <c:when test="${not empty th and empty columnHeaders}">
+        <c:set var="columnHeaders" value="${th}" scope="request" />
+      </c:when>
+      <c:when test="${not empty th and not empty columnHeaders}">
+        <c:set var="columnHeaders" value="${columnHeaders}${delim}${th}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnValues}">
+        <c:set var="columnHeaders" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnHeaders" value="${columnHeaders}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+    
+    <c:choose>
+       <c:when test="${not empty scope and empty columnScopes}">
+        <c:set var="columnScopes" value="${scope}" scope="request" />
+      </c:when>
+      <c:when test="${not empty scope and not empty columnScopes}">
+        <c:set var="columnScopes" value="${columnScopes}${delim}${scope}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnValues}">
+        <c:set var="columnScopes" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnScopes" value="${columnScopes}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+    
+    <c:if test="${empty prop}">
+      <c:set var="prop" value="${value}" />
+    </c:if>
+    <c:choose>
+       <c:when test="${not empty prop and empty columnProperties}">
+        <c:set var="columnProperties" value="${prop}" scope="request" />
+      </c:when>
+      <c:when test="${not empty prop and not empty columnProperties}">
+        <c:set var="columnProperties" value="${columnProperties}${delim}${prop}" scope="request" />
+      </c:when>
+      <c:when test="${empty columnValues}">
+        <c:set var="columnProperties" value="default" scope="request" />
+      </c:when>
+      <c:otherwise>
+        <c:set var="columnProperties" value="${columnProperties}${delim}default" scope="request" />
+      </c:otherwise>
+    </c:choose>
+
+  </util:render>
+</jsp:root>

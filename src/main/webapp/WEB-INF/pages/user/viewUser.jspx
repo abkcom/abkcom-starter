@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
+          xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>  
+    
+  <layout:main h1="View User ${user.fullName}">
+    <jsp:attribute name="style">
+      form,.form-container {display:inline !important;}
+    </jsp:attribute>  
+    <form:output>
+      <form:readonly label="Full Name" field="${user.fullName}"/>
+      <form:readonly label="Username" field="${user.username}"/>
+      <form:readonly label="Email" field="${user.email}"/>
+    </form:output>
+    <form:buttonBox>
+      <form:link label="Edit" path="/users/${user.id}/edit"/>
+      <form:form path="/users/${user.id}/delete" >
+        <form:button label="Delete" cssClass="btn-link"/>
+      </form:form>
+      <form:link label="Back to list" path="/users"/>
+    </form:buttonBox>
+  </layout:main>
+
+</jsp:root>

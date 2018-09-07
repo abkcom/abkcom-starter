@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1">
+  <jsp:output omit-xml-declaration="yes" />
+
+  <jsp:directive.attribute name="tagId" type="java.lang.String" required="false" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
+  <jsp:directive.attribute name="legend" type="java.lang.String" required="false" rtexprvalue="true" description="The legend text" />
+  <jsp:directive.attribute name="styleClass" type="java.lang.String" required="false" rtexprvalue="true" description="Specify Style Class" />
+  <jsp:directive.attribute name="style" type="java.lang.String" required="false" rtexprvalue="true" description="Specify Style" />
+  <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="roles" type="java.lang.String" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered based one role " />
+  
+  <util:render render="${empty render or render}" roles="${roles}">
+    <c:if test="${empty tagId}">
+      <c:set var="tagId">
+        <util:idGenerator value="${legend}_id"/>
+      </c:set>
+    </c:if>  
+	  <fieldset id="${tagId}" class="${styleClass}" style="${style}">
+	    <c:if test="${not empty legend}">
+	      <legend><util:message value="${legend}"/></legend>
+	    </c:if>    
+	    <jsp:doBody />
+	  </fieldset>
+  </util:render>
+</jsp:root>

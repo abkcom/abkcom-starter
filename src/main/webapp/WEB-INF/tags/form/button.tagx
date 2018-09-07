@@ -1,0 +1,23 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" 
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1">
+  <jsp:output omit-xml-declaration="yes" />
+
+  <jsp:directive.attribute name="tagId" type="java.lang.String" required="false" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
+  <jsp:directive.attribute name="label" type="java.lang.String" required="true" rtexprvalue="true" description="The label used for this button" />
+  <jsp:directive.attribute name="cssClass" type="java.lang.String" required="false" rtexprvalue="true" description="Specify Style Class" />
+  <jsp:directive.attribute name="style" type="java.lang.String" required="false" rtexprvalue="true" description="Specify Style" />
+  <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  
+  <util:render render="${empty render or render}">
+	  <c:if test="${empty tagId}">
+      <c:set var="tagId">
+        <util:idGenerator value="${label}_id"/>
+      </c:set>
+	  </c:if>
+    <button type="submit" id="${tagId}" name="${tagId}" class="btn btn-primary ${cssClass}" style="${style}" >
+      <util:message value="${label}"/>
+    </button>  
+  </util:render>
+</jsp:root>

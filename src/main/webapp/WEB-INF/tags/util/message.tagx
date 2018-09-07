@@ -1,0 +1,15 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:sp="http://www.springframework.org/tags"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1">
+	<jsp:output omit-xml-declaration="yes" />
+  
+	<jsp:directive.attribute name="value" type="java.lang.String" required="false" rtexprvalue="true" description="Message resource key, if key is not found value is printed." />
+	<jsp:directive.attribute name="arguments" type="java.lang.String" required="false" rtexprvalue="true" description="Comma delimeted message resource arguments." />
+	<jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+  <jsp:directive.attribute name="roles" type="java.lang.String" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered based one role " />
+
+	<util:render render="${(empty render or render) and not empty value}" roles="${roles}">
+		<sp:message code="${value}" text="${value}" arguments="${arguments}"/>
+	</util:render>
+</jsp:root>
