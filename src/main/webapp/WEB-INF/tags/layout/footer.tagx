@@ -6,6 +6,6 @@
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
 
   <util:render render="${empty render or render}">
-    <footer>This a Footer</footer>
+    <footer class="navbar navbar-expand navbar-dark flex-column flex-md-row bg-secondary text-white">This is a Footer</footer>
   </util:render>
 </jsp:root>

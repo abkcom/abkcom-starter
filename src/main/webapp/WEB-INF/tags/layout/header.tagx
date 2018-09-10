@@ -6,6 +6,8 @@
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
 
   <util:render render="${empty render or render}">
-    <header>This a Header</header>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bg-primary text-white">
+      This is a Header
+    </header>
   </util:render>
 </jsp:root>
