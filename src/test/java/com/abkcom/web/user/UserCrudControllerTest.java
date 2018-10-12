@@ -3,8 +3,10 @@ package com.abkcom.web.user;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -14,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -68,11 +71,10 @@ public class UserCrudControllerTest
   @Test
   public void viewUser() throws Exception
   {
-    mvcMoc.perform(get("/users/0")).andDo(print())
-        // .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        .andExpect(jsonPath("$.email", is("test@email.com")))
-        .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/users/0"))));
-
+    mvcMoc.perform(get("/users/0")).andExpect(status().isOk())
+    .andExpect(view().name("/user/viewUser"));
+    verify(userServiceMock, times(1)).getUser(0l);
+    verifyNoMoreInteractions(userServiceMock);
   }
 
   @Test
@@ -100,7 +102,7 @@ public class UserCrudControllerTest
   {
     mvcMoc
         .perform(
-            post("/users")
+            post("/users/add")
                 .content(
                     "{\"fullName\":\"Peter Doe\",\"username\":\"peterdoe\",\"email\":\"test@email.com\"}")
                 .contentType(MediaType.APPLICATION_JSON))
