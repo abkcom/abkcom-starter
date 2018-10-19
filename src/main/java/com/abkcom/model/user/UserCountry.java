@@ -6,7 +6,7 @@ import com.abkcom.common.util.CollUtil;
 
 public enum UserCountry
 {
-  USA, CHINA;
+  USA, CHINA, CANADA;
   
   public String getName()
   {

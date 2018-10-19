@@ -18,13 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.abkcom.service.user.UserCrudService;
 import com.abkcom.service.user.UserNotFoundException;
+import com.abkcom.web.AbstractController;
 
 @Controller
 @RequestMapping("/users")
-public class UserCrudController
+public class UserCrudController extends AbstractController
 {
   @Autowired
-  private UserCrudService userService;
+  private UserCrudService userCrudService;
   @Autowired
   private UserFormValidator validator;
 
@@ -37,14 +38,14 @@ public class UserCrudController
   @GetMapping
   public String list(Model model)
   {
-    model.addAttribute("users", userService.getAllUsers());
+    model.addAttribute("users", userCrudService.getAllUsers());
     return "/user/listUsers";
   }
 
   @GetMapping("/{id}")
   public String view(@PathVariable Long id, Model model)
   {
-    model.addAttribute("user", userService.getUser(id));
+    model.addAttribute("user", userCrudService.getUser(id));
     return "/user/viewUser";
   }
   
@@ -61,14 +62,14 @@ public class UserCrudController
     {
       return "/user/addUser";
     }
-    userService.addUser(userForm);
+    userCrudService.addUser(userForm);
     return "redirect:/users";
   }
 
   @GetMapping("/{id}/edit")
   public String editForm(@PathVariable Long id, @ModelAttribute UserForm userForm)
   {
-    userForm.populateForm(userService.getUser(id));
+    userForm.populateForm(userCrudService.getUser(id));
     return "/user/editUser";
   }
   
@@ -79,22 +80,21 @@ public class UserCrudController
     {
       return "/user/editUser";
     }
-    userService.editUser(id, userForm);
+    userCrudService.editUser(id, userForm);
     return "redirect:/users/"+id;
   }
 
   @PostMapping("/{id}/delete")
   public String delete(@PathVariable Long id)
   {
-    userService.deleteUser(id);
+    userCrudService.deleteUser(id);
     return "redirect:/users";
   }
 
   @ExceptionHandler
-  public String exceptionHandler(UserNotFoundException e, RedirectAttributes redirectAttributes)
+  public String exceptionHandler(UserNotFoundException e, RedirectAttributes ra)
   {
-    e.printStackTrace();
-    redirectAttributes.addFlashAttribute("errorMessage", "User not found!");
+    addPageError(ra, "user.not.found");
     return "redirect:/users";
   }
 }

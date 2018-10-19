@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" 
+          xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+
+	<c:if test="${not empty successMessage}">
+    <layout:successMsg label="${successMessage.key}" attrs="${successMessage.attrsAsList}" /> 
+	</c:if>
+	<c:if test="${not empty errorMessage}">
+	  <layout:errorMsg label="${errorMessage.key}" attrs="${errorMessage.attrsAsList}" />
+	</c:if>
+</jsp:root>

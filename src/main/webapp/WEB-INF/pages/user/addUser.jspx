@@ -7,7 +7,7 @@
     
   <layout:main h1="Add User">
     <form:form modelAttribute="userForm">
-      <form:input label="Fuill Name" field="fullName"/>
+      <form:input label="Full Name" field="fullName"/>
       <form:input label="Email" field="email"/>
       <form:input label="Username" field="username"/>
       <form:input type="password" label="Password" field="password"/>

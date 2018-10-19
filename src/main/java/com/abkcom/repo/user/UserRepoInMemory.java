@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Repository;
 
 import com.abkcom.model.user.User;
+import com.abkcom.model.user.UserCountry;
 import com.abkcom.service.user.UserRepo;
 
 @Repository
@@ -30,12 +31,14 @@ public class UserRepoInMemory implements UserRepo
     u.setFullName("Pasha");
     u.setUsername("pasha_user");
     u.setEmail("pasha@test.com");
+    u.setHomeCountry(UserCountry.USA);
     users.put(u.getId(), u);
     u = new User();
     u.setId(idgen.getAndIncrement());
     u.setFullName("John");
     u.setUsername("john_user");
     u.setEmail("john@test.com");
+    u.setHomeCountry(UserCountry.USA);
     users.put(u.getId(), u);
   }
   

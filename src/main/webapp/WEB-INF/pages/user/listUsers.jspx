@@ -12,6 +12,7 @@
       <table:column th="Username" prop="username"/>
       <table:column th="Full Name" prop="fullName"/>
       <table:column th="E-mail" prop="email"/>
+      <table:column th="Country" prop="homeCountry"/>
     </table:table>
     <form:buttonBox>
       <form:link label="Add New" path="/users/add"/>

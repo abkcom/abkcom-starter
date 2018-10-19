@@ -24,12 +24,7 @@
     <body>
       <layout:header render="${includeHeader}"/>
       <div class="container">
-        <c:if test="${not empty errorMessage}">
-          <div class="alert alert-danger">
-            <a href="#" class="close" data-dismiss="alert">&#215;</a>
-            <strong>Error!</strong><c:out value="${errorMessage }"/>
-          </div>
-        </c:if>        
+        <layout:pageMsg/>
         <h1><c:out value="${h1}"/></h1>
         <jsp:doBody/>
       </div>

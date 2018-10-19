@@ -7,7 +7,7 @@
     
   <layout:main h1="Edit User">
     <form:form modelAttribute="userForm">
-      <form:input label="Fuill Name" field="fullName"/>
+      <form:input label="Full Name" field="fullName"/>
       <form:input label="Email" field="email"/>
       <form:radios label="Home Country" field="homeCountryForm"/>
       <form:buttonBox>

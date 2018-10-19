@@ -39,6 +39,7 @@ public class UserCrudServiceImpl implements UserCrudService
     user.setFullName(userDto.getFullName());
     user.setUsername(userDto.getUsername());
     user.setPassword(userDto.getPassword());
+    user.setHomeCountry(userDto.getHomeCountry());
     userRepo.addUser(user);
     return user;
   }
@@ -49,6 +50,7 @@ public class UserCrudServiceImpl implements UserCrudService
     User user = userRepo.getUser(userId);
     user.setEmail(userDto.getEmail());
     user.setFullName(userDto.getFullName());
+    user.setHomeCountry(userDto.getHomeCountry());
     userRepo.updateUser(user);
   }
 
