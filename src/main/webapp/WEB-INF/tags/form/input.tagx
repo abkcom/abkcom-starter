@@ -47,6 +47,7 @@
     </c:if>
     <div class="form-group">
     <form:label label="${label}" forId="${tagId}" required="${required}" />
+    <sf:errors path="${field}" cssClass="text-danger ml-2 small" style=""/>
     <c:choose>
       <c:when test="${disableFormBinding}">
         <c:choose>
@@ -64,25 +65,24 @@
         <c:choose>
           <c:when test="${type eq 'password'}">
             <sf:password id="${tagId}" path="${field}" readonly="${disabled}"
-              cssErrorClass="form-control text-danger" cssStyle="${cssStyle}" showPassword="${showPassword}" cssClass="form-control"
+              cssErrorClass="form-control border-danger" cssStyle="${cssStyle}" showPassword="${showPassword}" cssClass="form-control"
               maxlength="255" autofocus="${autofocus}" placeholder="${placeholder}" aria-required="${required}" />
           </c:when>
           <c:when test="${type eq 'textarea'}">
-            <sf:textarea id="${tagId}" path="${field}" readonly="${disabled}" cssClass="form-control" cssErrorClass="form-control text-danger"
+            <sf:textarea id="${tagId}" path="${field}" readonly="${disabled}" cssClass="form-control" cssErrorClass="form-control border-danger"
               cssStyle="width:100%; min-height:100px; ${cssStyle}" aria-required="${required}" />
           </c:when>
           <c:when test="${type eq 'file'}">
             <sf:input id="${tagId}" path="${field}" type="file" readonly="${disabled}"
-              cssErrorClass="form-control text-danger" cssStyle="${cssStyle}" cssClass="form-control" maxlength="255"
+              cssErrorClass="form-control border-danger" cssStyle="${cssStyle}" cssClass="form-control" maxlength="255"
               aria-required="${required}" />
           </c:when>
           <c:otherwise>
             <sf:input id="${tagId}" path="${field}" type="${type}" readonly="${disabled}"
-              cssErrorClass="form-control text-danger" cssStyle="${cssStyle}" cssClass="form-control" maxlength="255"
+              cssErrorClass="form-control border-danger" cssStyle="${cssStyle}" cssClass="form-control" maxlength="255"
               autofocus="${autofocus}" placeholder="${placeholder}" aria-required="${required}" />
           </c:otherwise>
         </c:choose>
-				<sf:errors path="${field}" cssClass="text-danger" style=""/>
       </c:otherwise>
     </c:choose>
     </div>

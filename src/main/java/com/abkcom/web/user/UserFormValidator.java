@@ -66,5 +66,4 @@ public class UserFormValidator extends FormValidatorHelper implements Validator
       errors.popNestedPath();
     }
   }
-
 }

@@ -12,6 +12,8 @@
       <form:input label="Username" field="username"/>
       <form:input type="password" label="Password" field="password"/>
       <form:options label="Home Country" field="homeCountryForm"/>
+      <form:input label="Age" field="age"/>
+      <form:input label="Amount" field="amount"/>
       <form:buttonBox>
         <form:button label="Add New"/>
         <form:link label="Cancel" path="/users"/>

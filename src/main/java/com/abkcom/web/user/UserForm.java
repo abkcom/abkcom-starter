@@ -1,5 +1,6 @@
 package com.abkcom.web.user;
 
+import com.abkcom.common.util.Money;
 import com.abkcom.model.user.UserCountry;
 import com.abkcom.service.user.UserCreate;
 import com.abkcom.service.user.UserUpdate;
@@ -13,6 +14,8 @@ public class UserForm implements UserCreate, UserUpdate {
   private String password;
   private String email;
   private SelectFormField<UserCountry> homeCountryForm;
+  private Long age;
+  private Money amount;
 
   public UserForm()
   {
@@ -74,7 +77,27 @@ public class UserForm implements UserCreate, UserUpdate {
   public void setEmail(String email) {
     this.email = email;
   }
+  
+  public Long getAge()
+  {
+    return age;
+  }
+  
+  public void setAge(Long age)
+  {
+    this.age = age;
+  }
 
+  public Money getAmount()
+  {
+    return amount;
+  }
+
+  public void setAmount(Money amount)
+  {
+    this.amount = amount;
+  }
+  
   public void populateForm(UserView user)
   {
     this.fullName = user.getFullName();
