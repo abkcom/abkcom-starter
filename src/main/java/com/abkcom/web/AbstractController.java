@@ -9,8 +9,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 public abstract class AbstractController
 {
-  private static final String SUCCESS_KEY = "successMessage";
-  private static final String ERROR_KEY = "errorMessage";
+  public static final String SUCCESS_KEY = "successMessage";
+  public static final String ERROR_KEY = "errorMessage";
 
   @InitBinder
   public void defaultInitBinder(WebDataBinder binder)
