@@ -15,7 +15,7 @@ public class UserForm implements UserCreate, UserUpdate {
   private String email;
   private SelectFormField<UserCountry> homeCountryForm;
   private Long age;
-  private Money amount;
+  private Money annualIncome;
 
   public UserForm()
   {
@@ -88,14 +88,14 @@ public class UserForm implements UserCreate, UserUpdate {
     this.age = age;
   }
 
-  public Money getAmount()
+  public Money getAnnualIncome()
   {
-    return amount;
+    return annualIncome;
   }
 
-  public void setAmount(Money amount)
+  public void setAnnualIncomee(Money annualIncome)
   {
-    this.amount = amount;
+    this.annualIncome = annualIncome;
   }
   
   public void populateForm(UserView user)

@@ -1,12 +1,14 @@
 package com.abkcom.web.user;
 
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -181,7 +183,8 @@ public class UserCrudControllerTest
     verify(userServiceMock, times(1)).editUser(idObjectArgument.capture(), formObjectArgument.capture());
     verifyNoMoreInteractions(userServiceMock);
     UserForm formObject = formObjectArgument.getValue();
-    assertEquals("John Doe", formObject.getFullName());
+    //assertEquals("John Doe", formObject.getFullName());
+    assertThat("John Doe", equalTo(formObject.getFullName()));
     assertEquals("test@test.com", formObject.getEmail());
     assertEquals(UserCountry.USA, formObject.getHomeCountry());
     assertEquals(id, idObjectArgument.getValue());

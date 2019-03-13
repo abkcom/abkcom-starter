@@ -24,7 +24,6 @@ public class UserFormValidator extends FormValidatorHelper implements Validator
   public void validate(Object target, Errors errors)
   {
     UserForm u = (UserForm) target;
-    System.out.println("\n\nID: "+ u.getId());
     validateFullName(errors, u);
     validateEmail(errors, u);
     validateUsername(errors, u);
