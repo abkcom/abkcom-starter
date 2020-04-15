@@ -3,6 +3,7 @@ package com.abkcom.common.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -14,12 +15,15 @@ import java.util.Set;
 public class CollUtil<T>
 {
   /**
-   * Splits up the collection into sublists containing the specified number of elements in it. This
-   * allows to convert a very large collection into a list of smaller lists of the specified size.
+   * Splits up the collection into sublists containing the specified number of
+   * elements in it. This allows to convert a very large collection into a list
+   * of smaller lists of the specified size.
    *
-   * @param c collection to be broken down into sublists.
-   * @param size specifies max number of elements in the resulting sublists. If size is equal or
-   *          less than 0, the same collection is returned.
+   * @param c
+   *          collection to be broken down into sublists.
+   * @param size
+   *          specifies max number of elements in the resulting sublists. If
+   *          size is equal or less than 0, the same collection is returned.
    * @return a list of sublists.
    */
   public static <T> List<List<T>> split(Collection<T> c, int size)
@@ -29,8 +33,8 @@ public class CollUtil<T>
       return null;
     }
 
-    LinkedList<List<T>> result = new LinkedList<List<T>>();
-    ArrayList<T> all = new ArrayList<T>(c);
+    LinkedList<List<T>> result = new LinkedList<>();
+    ArrayList<T> all = new ArrayList<>(c);
 
     if (size <= 0)
     {
@@ -54,11 +58,15 @@ public class CollUtil<T>
   /**
    * Returns a new array that is a subsection (slice) of source array
    *
-   * @param source the array from which you want a subsection.
-   * @param offset defines the number of elements to the right of position zero and where coping
-   *          should start to take place.
-   * @param length defines the number of elements that should be copied.
-   * @return an array containing elements from source[offset] to source[offset + length - 1]
+   * @param source
+   *          the array from which you want a subsection.
+   * @param offset
+   *          defines the number of elements to the right of position zero and
+   *          where coping should start to take place.
+   * @param length
+   *          defines the number of elements that should be copied.
+   * @return an array containing elements from source[offset] to source[offset +
+   *         length - 1]
    */
   public static int[] slice(int[] source, int offset, int length)
   {
@@ -71,17 +79,21 @@ public class CollUtil<T>
   /**
    * Returns a new array that is a subsection (slice) of source array
    *
-   * @param source the array from which you want a subsection.
-   * @param offset defines position of the element in the source array which will become the first
-   *          element of the resulting slice. In other words, it points to the element where the
-   *          slice begins.
-   * @param length defines the number of elements to be included into the resulting slice.
-   * @return an array containing elements from source[offset] to source[offset + length - 1]
+   * @param source
+   *          the array from which you want a subsection.
+   * @param offset
+   *          defines position of the element in the source array which will
+   *          become the first element of the resulting slice. In other words,
+   *          it points to the element where the slice begins.
+   * @param length
+   *          defines the number of elements to be included into the resulting
+   *          slice.
+   * @return an array containing elements from source[offset] to source[offset +
+   *         length - 1]
    */
   public static Object[] slice(Object[] source, int offset, int length)
   {
-    Object[] slice = (Object[]) java.lang.reflect.Array.newInstance(source
-        .getClass().getComponentType(), length);
+    Object[] slice = (Object[]) java.lang.reflect.Array.newInstance(source.getClass().getComponentType(), length);
     System.arraycopy(source, offset, slice, 0, length);
 
     return slice;
@@ -90,11 +102,13 @@ public class CollUtil<T>
   /**
    * Returns a set containing only the specified object.
    *
-   * @param o an object to be presented as a <code>java.util.Set</code> collection.
+   * @param o
+   *          an object to be presented as a <code>java.util.Set</code>
+   *          collection.
    */
   public static <T> Set<T> toSet(T... o)
   {
-    Set<T> s = new LinkedHashSet<T>(o.length);
+    Set<T> s = new LinkedHashSet<>(o.length);
     for (T el : o)
     {
       s.add(el);
@@ -111,7 +125,7 @@ public class CollUtil<T>
    */
   public static <T> List<T> castList(Class<? extends T> clazz, Collection<?> c)
   {
-    List<T> r = new ArrayList<T>(c.size());
+    List<T> r = new ArrayList<>(c.size());
     for (Object o : c)
     {
       r.add(clazz.cast(o));
@@ -125,7 +139,7 @@ public class CollUtil<T>
     {
       return null;
     }
-    List<T> list = new ArrayList<T>();
+    List<T> list = new ArrayList<>();
     while (it.hasNext())
     {
       list.add(it.next());
@@ -163,7 +177,8 @@ public class CollUtil<T>
       return list.get(index);
     }
     catch (Exception e)
-    {}
+    {
+    }
     return null;
   }
 
@@ -177,7 +192,7 @@ public class CollUtil<T>
 
   public static <K, V> Map<K, V> toMap(K key, V value)
   {
-    Map<K, V> m = new HashMap<K, V>();
+    Map<K, V> m = new HashMap<>();
     m.put(key, value);
     return m;
   }
@@ -189,12 +204,12 @@ public class CollUtil<T>
 
   public static <T> List<T> toList(T... array)
   {
-    return new ArrayList<T>(Arrays.asList(array));
+    return array == null ? Collections.emptyList() : new ArrayList<>(Arrays.asList(array));
   }
 
   public static <T> List<T> limit(Collection<T> coll, int max)
   {
-    ArrayList<T> limited = new ArrayList<T>(coll);
+    ArrayList<T> limited = new ArrayList<>(coll);
     if (coll.size() <= max)
     {
       return limited;
