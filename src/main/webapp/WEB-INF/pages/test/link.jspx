@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
+          xmlns:table="urn:jsptagdir:/WEB-INF/tags/table"
+          xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>  
+    
+  <a href="http://dev-demo1.myonplanu.com:8080/login/payer?studentId=123456789&amp;firstName=Test+First&amp;lastName=Last+Name&amp;emailAddress=&amp;paymentMethod=echeck_creditcard&amp;timestamp=1642707986168&amp;userType=student&amp;hash=4e852943c1a105ebfb9cb1f7d7b69d312332b6114ea9cb7931b455551b397003bd5870a40f3247d6e856bea9c0c06b8da83f2975d16c11de92f75d850bf5cde7">
+    payer login</a>
+
+</jsp:root>
