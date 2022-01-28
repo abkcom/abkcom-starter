@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jsp:root xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
+          xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes"/>
+  <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>  
+    
+  <layout:main h1="Enter Credit Card Number">
+    <form:form modelAttribute="cardNumberForm">
+      <div>Amount: $<c:out value="${makePaymentBean.amount}"/></div>
+      <form:input label="Card Number" field="cardNumber"/>
+      <form:buttonBox>
+        <form:button label="Continue"/>
+        <form:link label="Cancel" path="/pay"/>
+      </form:buttonBox>
+    </form:form>
+  </layout:main>
+
+</jsp:root>
