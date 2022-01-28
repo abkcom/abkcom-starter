@@ -14,6 +14,7 @@ public class UserFormValidator extends FormValidatorHelper implements Validator
 {
   @Autowired
   private SelectFieldRequiredValidator selectRequiredValidator;
+
   @Override
   public boolean supports(Class<?> clazz)
   {
@@ -29,36 +30,50 @@ public class UserFormValidator extends FormValidatorHelper implements Validator
     validateUsername(errors, u);
     validatePassword(errors, u);
     validateHomeCountry(errors, u);
+    validateAnnualIncome(errors, u);
+    validateAge(errors, u);
   }
-  
+
+  private void validateAge(Errors errors, UserForm u)
+  {
+    rejectIfEmptyOrWhitespace(errors, "age");
+
+  }
+
+  private void validateAnnualIncome(Errors errors, UserForm u)
+  {
+    rejectIfEmptyOrWhitespace(errors, "annualIncome");
+
+  }
+
   private void validateFullName(Errors errors, UserForm u)
   {
     rejectIfEmptyOrWhitespace(errors, "fullName");
   }
-  
+
   private void validateEmail(Errors errors, UserForm u)
   {
     rejectIfEmptyOrWhitespace(errors, "email");
   }
-  
+
   private void validateUsername(Errors errors, UserForm u)
   {
-    if(u.getId() == null)
-    rejectIfEmptyOrWhitespace(errors, "username");
+    if (u.getId() == null)
+      rejectIfEmptyOrWhitespace(errors, "username");
   }
-  
+
   private void validatePassword(Errors errors, UserForm u)
   {
-    if(u.getId() == null)
-    rejectIfEmptyOrWhitespace(errors, "password");
+    if (u.getId() == null)
+      rejectIfEmptyOrWhitespace(errors, "password");
   }
-  
+
   private void validateHomeCountry(Errors errors, UserForm u)
   {
     try
     {
       errors.pushNestedPath("homeCountryForm");
-      ValidationUtils.invokeValidator(selectRequiredValidator, u.getHomeCountryForm(), errors);
+      ValidationUtils.invokeValidator(this.selectRequiredValidator, u.getHomeCountryForm(), errors);
     }
     finally
     {

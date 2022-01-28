@@ -7,7 +7,8 @@ import com.abkcom.service.user.UserUpdate;
 import com.abkcom.service.user.UserView;
 import com.abkcom.web.SelectFormField;
 
-public class UserForm implements UserCreate, UserUpdate {
+public class UserForm implements UserCreate, UserUpdate
+{
   private Long id;
   private String fullName;
   private String username;
@@ -19,70 +20,79 @@ public class UserForm implements UserCreate, UserUpdate {
 
   public UserForm()
   {
-    homeCountryForm = new SelectFormField<>(UserCountry.list(), "name", "name");
+    this.homeCountryForm = new SelectFormField<>(UserCountry.list(), "name", "name");
   }
-  
+
   public Long getId()
   {
-    return id;
+    return this.id;
   }
+
   public void setId(Long id)
   {
     this.id = id;
   }
-  
+
   @Override
-  public String getFullName() {
-    return fullName;
+  public String getFullName()
+  {
+    return this.fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(String fullName)
+  {
     this.fullName = fullName;
   }
 
   @Override
-  public String getUsername() {
-    return username;
+  public String getUsername()
+  {
+    return this.username;
   }
 
-  public void setUsername(String username) {
+  public void setUsername(String username)
+  {
     this.username = username;
   }
 
   @Override
-  public String getPassword() {
-    return password;
+  public String getPassword()
+  {
+    return this.password;
   }
 
-  public void setPassword(String password) {
+  public void setPassword(String password)
+  {
     this.password = password;
   }
 
   @Override
-  public String getEmail() {
-    return email;
+  public String getEmail()
+  {
+    return this.email;
   }
-  
+
   public SelectFormField<UserCountry> getHomeCountryForm()
   {
-    return homeCountryForm;
+    return this.homeCountryForm;
   }
-  
+
   @Override
   public UserCountry getHomeCountry()
   {
-    return homeCountryForm.getSelectedChoice();
+    return this.homeCountryForm.getSelectedChoice();
   }
 
-  public void setEmail(String email) {
+  public void setEmail(String email)
+  {
     this.email = email;
   }
-  
+
   public Long getAge()
   {
-    return age;
+    return this.age;
   }
-  
+
   public void setAge(Long age)
   {
     this.age = age;
@@ -90,14 +100,14 @@ public class UserForm implements UserCreate, UserUpdate {
 
   public Money getAnnualIncome()
   {
-    return annualIncome;
+    return this.annualIncome;
   }
 
-  public void setAnnualIncomee(Money annualIncome)
+  public void setAnnualIncome(Money annualIncome)
   {
     this.annualIncome = annualIncome;
   }
-  
+
   public void populateForm(UserView user)
   {
     this.fullName = user.getFullName();
