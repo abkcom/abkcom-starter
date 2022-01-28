@@ -7,8 +7,10 @@
   <jsp:directive.attribute name="includeHeader" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicates if page header is visable. (default: true)" />
   <jsp:directive.attribute name="includeFooter" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicates if page footer is visable. (default: true)" />
   <jsp:directive.attribute name="style" fragment="true" />
+  <jsp:directive.attribute name="footer" fragment="true" />
   
   <c:set var="includeHeader" value="${empty includeHeader ? true : includeHeader}" />
+  <c:set var="includeFooter" value="${empty includeFooter ? true : includeFooter}" />
 
   <html>
     <head>
@@ -26,6 +28,7 @@
         <h1><c:out value="${h1}"/></h1>
         <layout:pageMsg/>
         <jsp:doBody/>
+        <jsp:invoke fragment="footer"/>
       </div>
       <layout:footer render="${includeFooter}"/>        
     </body>  

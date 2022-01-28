@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jsp:root xmlns:layout="urn:jsptagdir:/WEB-INF/tags/layout"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
           xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
   <jsp:output omit-xml-declaration="yes"/>        
   <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
@@ -13,7 +14,8 @@
 		</head>
 	  <body>
       <h1>500 error!</h1>
-	    Oops!!! Something went wrong!
+	    <p>Oops!!! Something went wrong!</p>
+	    <c:out value="${requestScope['javax.servlet.error.exception']}"/>
 	  </body>
 	</html>
 </jsp:root>
