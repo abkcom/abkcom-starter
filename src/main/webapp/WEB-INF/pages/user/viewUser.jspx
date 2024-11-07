@@ -6,7 +6,7 @@
   <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>  
     
   <layout:main h1="View User ${user.fullName}">
-    <jsp:attribute name="style">
+    <jsp:attribute name="styleFragment">
       form,.form-container {display:inline !important;}
     </jsp:attribute>  
     <form:output>

@@ -1,7 +1,5 @@
 package com.abkcom.web;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.abkcom.service.EntityNotFoundException;
 import com.abkcom.service.EntityPersistenceException;
 import com.abkcom.service.SecurityException;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 class GlobalDefaultExceptionHandler

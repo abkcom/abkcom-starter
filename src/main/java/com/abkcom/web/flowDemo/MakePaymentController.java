@@ -1,7 +1,5 @@
 package com.abkcom.web.flowDemo;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.abkcom.web.AbstractController;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/pay")

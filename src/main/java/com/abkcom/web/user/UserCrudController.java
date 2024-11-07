@@ -2,9 +2,6 @@ package com.abkcom.web.user;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +21,9 @@ import com.abkcom.service.user.UserCrudService;
 import com.abkcom.service.user.UserNotFoundException;
 import com.abkcom.service.user.UserView;
 import com.abkcom.web.AbstractController;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/users")

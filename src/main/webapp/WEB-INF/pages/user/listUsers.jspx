@@ -7,8 +7,8 @@
   <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>  
     
   <layout:main h1="Users 1">
-    <jsp:attribute name="footer">
-      my footer 1
+    <jsp:attribute name="footerFragment">
+      my footer 2
     </jsp:attribute>     
     <form method="get">
       <form:input label="Find By Id" field="id" disableFormBinding="true"/>
